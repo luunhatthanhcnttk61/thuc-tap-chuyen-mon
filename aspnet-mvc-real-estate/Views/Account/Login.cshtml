@@ -1,0 +1,49 @@
+﻿@using aspnet_mvc_real_estate.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Đăng nhập hệ thống";
+}
+<div class="bg-login"></div>
+<div class="section-login">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="panel">
+                    <div class="panel-heading p-25">
+                        <h3 class="panel-title text-center"><a href="@Url.Action("Index", "Home")"><img src="~/Content/Images/logo.png" /></a></h3>
+                    </div>
+                    <div class="panel-body">
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = "~/admin" }, FormMethod.Post, new { @class = "form-login", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="input-login-field">
+                                <i class="fa-solid fa-user"></i>
+                                @Html.TextBoxFor(m => m.Email, new { placeholder = "Địa chỉ Email", @class = "input-login" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            <div class="input-login-field">
+                                <i class="fa-solid fa-lock"></i>
+                                @Html.PasswordFor(m => m.Password, new { placeholder = "Mật khẩu", @class = "input-login" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                <div class="checkbox-login">
+                                    @Html.CheckBoxFor(m => m.RememberMe)
+                                    @Html.LabelFor(m => m.RememberMe)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-login">Đăng Nhập</button>
+                            </div>
+                            <p><a href="@Url.Action("ForgotPassword", "User")">Quên mật khẩu?</a></p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

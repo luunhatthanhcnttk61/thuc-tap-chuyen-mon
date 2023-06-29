@@ -1,0 +1,232 @@
+﻿@model aspnet_mvc_real_estate.Models.subscribed
+@{
+    ViewBag.Title = "Công ty giới thiệu dự án và sản phẩm bất động sản Skylands";
+}
+<div class="slider">
+    <div class="slider-item">
+        <img src="~/Content/Images/slider_1.jpg" class="slider-img" />
+    </div>
+</div>
+<!-- Find Product Section -->
+<section class="section-find-project">
+    <div class="container">
+        @using (Html.BeginForm("Search", "Home", FormMethod.Get))
+        {
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.Editor("key", new { htmlAttributes = new { @class = "search-query", placeholder = "Nhập từ khóa" } })
+                </div>
+                <div class="col-md-4 mobile-pt">
+                    @Html.DropDownList("typeSearch", (IEnumerable<SelectListItem>)ViewBag.typeSearch, htmlAttributes: new { @class = "search-query", placeholder = "Nhập từ khóa" })
+                </div>
+                <div class="col-md-2">
+                    <button class="btn-search"><i class="fa-solid fa-magnifying-glass"></i> Tìm Kiếm</button>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+<!-- Hot Product Section -->
+<section class="section-project">
+    <div class="container">
+        <div class="pre-project-header"><img src="https://bizweb.dktcdn.net/100/328/362/themes/894751/assets/before_title.png?1664350964800" /></div>
+        <h2 class="project-header">Bất động sản nổi bật</h2>
+        <div class="after-project-header">Tổng hợp các dự án bất động sản tại Hà Nội, Đà Nẵng, TP Hồ Chí Minh...và cách tỉnh thành khác hot nhất thời điểm hiện tại</div>
+        <div class="slide-product">
+            @foreach (var item in ViewBag.HotProduct)
+            {
+                <div class="slide-item">
+                    <div class="crew"><span>HOT</span></div>
+                    <div class="item-project-img hot">
+                        <img src="~/Images/Product/@item.thumb" />
+                        
+                    </div>
+                    <div class="item-project-body">
+                        <div class="item-project-name">@item.product.products_name</div>
+                        <div class="item-project-desc">@Html.Raw(item.product.desciption)</div>
+                        <div class="item-project-address"><i class="fa-solid fa-location-dot text-info"></i> @item.product.address</div>
+                        <div class="item-project-type"><i class="fa-solid fa-building text-info"></i> Loại BĐS: @aspnet_mvc_real_estate.Models.RE_TypeModels.Find(item.product.type).name</div>
+                        <div class="item-project-area"><i class="fa-solid fa-earth-americas text-info"></i> Diện tích: @item.product.area</div>
+                    </div>
+                    <div class="item-project-action">
+                        <div class="item-project-price">@DataTypeHelpers.FormatCurrency(item.product.price)</div>
+                        <a href="@Url.Action("ProductItem", "Product", new {slug = item.product.products_slug, id = item.product.products_id})" class="btn-detail">Xem chi tiết</a>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</section>
+<!-- Banner -->
+<div class="bg-thumb text-center">
+    <div class="container">
+        <div class="title-page">Vì sao bạn nên chọn bất động sản Skylands</div>
+        <p>Chúng tôi cung cấp đầy đủ và chính xác nhất thông tin các dự án bất động sản trên toàn quốc song hành với dịch vụ tư vấn nhanh chóng và hiệu quả</p>
+        <div class="row wrap">
+            <div class="col-md-4">
+                <div class="wrap-item">
+                    <div class="wrap-img"><img src="~/Content/Images/icon/img_why1.png" /></div>
+                    <div class="wrap-body">
+                        <div class="wrap-title">Chất lượng tốt nhất</div>
+                        <div class="wrap-content">Nghiên cứu, thiết kế và đầu tư xây dựng với hệ thống dịch vụ với chất lượng tốt nhất</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="wrap-item">
+                    <div class="wrap-img"><img src="~/Content/Images/icon/img_why2.png" /></div>
+                    <div class="wrap-body">
+                        <div class="wrap-title">Tìm kiếm thông tin dễ dàng</div>
+                        <div class="wrap-content">Tìm kiếm bất động sản bạn muốn theo danh mục cực kì dễ dàng</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="wrap-item">
+                    <div class="wrap-img"><img src="~/Content/Images/icon/img_why3.png" /></div>
+                    <div class="wrap-body">
+                        <div class="wrap-title">Kết nối với nhà đầu tư</div>
+                        <div class="wrap-content">Nhà đầu tư sẽ mang đến những sản phẩm và dịch vụ tốt nhất đáp ứng nhu cầu của bạn</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<!-- New Product Section -->
+<section class="section-project">
+    <div class="container">
+        <h2 class="project-title">Bất động sản mới nhất</h2>
+        <div class="slide-product-2">
+            @foreach (var item in ViewBag.NewProduct)
+            {
+                <div class="slide-item">
+                    @if (item.product.isHot) { 
+                        <div class="crew"><span>HOT</span></div>
+                    }
+                    <div class="item-project-img">
+                        <img src="~/Images/Product/@item.thumb" />
+                    </div>
+                    <div class="item-project-body">
+                        <div class="item-project-name">@item.product.products_name</div>
+                        <div class="item-project-desc">@Html.Raw(item.product.desciption)</div>
+                        <div class="item-project-address"><i class="fa-solid fa-location-dot text-info"></i> @item.product.address</div>
+                        <div class="item-project-type"><i class="fa-solid fa-building text-info"></i> Loại BĐS: @aspnet_mvc_real_estate.Models.RE_TypeModels.Find(item.product.type).name</div>
+                        <div class="item-project-area"><i class="fa-solid fa-earth-americas text-info"></i> Diện tích: @item.product.area</div>
+                    </div>
+                    <div class="item-project-action">
+                        <div class="item-project-price">@DataTypeHelpers.FormatCurrency(item.product.price)</div>
+                        <a href="@Url.Action("ProductItem", "Product", new {slug = item.product.products_slug, id = item.product.products_id})" class="btn-detail">Xem chi tiết</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<!-- Trending Product -->
+<section class="section-project">
+    <div class="container">
+        <h2 class="project-title">Bất động sản xem nhiều</h2>
+        <div class="slide-product-2">
+            @foreach (var item in ViewBag.TrendProduct)
+            {
+                <div class="slide-item">
+                    @if (item.product.isHot)
+                    {
+                        <div class="crew"><span>HOT</span></div>
+                    }
+                    <div class="item-project-img">
+                        <img src="~/Images/Product/@item.thumb" />
+                    </div>
+                    <div class="item-project-body">
+                        <div class="item-project-name">@item.product.products_name</div>
+                        <div class="item-project-desc">@Html.Raw(item.product.desciption)</div>
+                        <div class="item-project-address"><i class="fa-solid fa-location-dot text-info"></i> @item.product.address</div>
+                        <div class="item-project-type"><i class="fa-solid fa-building text-info"></i> Loại BĐS: @aspnet_mvc_real_estate.Models.RE_TypeModels.Find(item.product.type).name</div>
+                        <div class="item-project-area"><i class="fa-solid fa-earth-americas text-info"></i> Diện tích: @item.product.area</div>
+                    </div>
+                    <div class="item-project-action">
+                        <div class="item-project-price">@DataTypeHelpers.FormatCurrency(item.product.price)</div>
+                        <a href="@Url.Action("ProductItem", "Product", new {slug = item.product.products_slug, id = item.product.products_id})" class="btn-detail">Xem chi tiết</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<!-- News Section -->
+<section class="section-post">
+    <div class="container">
+        <h2 class="project-title">Tin tức thị trường</h2>
+        <div class="row">
+            <div class="col-md-8">
+                <article class="new-post">
+                    @foreach (var item in ViewBag.doubleFirstPost)
+                    {
+                        <div class="post-item">
+                            <div class="item-hover"></div>
+                            <img src="~/Content/Images/Post/@item.thumbnail" />
+                            <div class="content-post">
+                                <div class="post-name"><a href="@Url.Action("Post", "New", new {slug = item.news_slug, id = item.news_id})">@item.news_name</a></div>
+                                <div class="post-date"><i class="fa-solid fa-calendar-days"></i> @item.postdate</div>
+                            </div>
+                        </div>
+                    }
+                </article>
+                <article class="home-post">
+                    @foreach (var item in ViewBag.News)
+                    {
+                        <div class="blog-item">
+                            <img src="~/Content/Images/Post/@item.thumbnail" class="item-thumb" />
+                            <div class="blog-item-content">
+                                <div class="blog-item-name"><a href="@Url.Action("Post", "New", new {slug = item.news_slug, id = item.news_id})">@item.news_name</a></div>
+                                <div class="blog-item-time"><i class="fa-solid fa-calendar-days"></i>  @item.postdate</div>
+                            </div>
+                        </div>
+                    }
+                </article>
+            </div>
+            <div class="col-md-4">
+                <img src="~/Content/Images/banner_blog_section.jpg" class="banner-home" />
+            </div>
+        </div>
+    </div>
+</section>
+<hr />
+<!-- Subscribe Section -->
+<div class="text-center">
+    <div class="container">
+        <div class="title-page-subs">Đăng ký nhận thông tin nhà đất miễn phí</div>
+        <p>Cập nhật hơn 1.000.000 thông tin mua bán và giao dịch nhà đất mỗi tháng tại 63 tỉnh thành phố trên cả nước</p>
+        @using (Html.BeginForm("Subscribed", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-flex">
+                <div class="input-form">
+                    <div class="contact-input-line">
+                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-contact-input-2 text-dark", placeholder = "Nhập địa chỉ Mail" } })
+                        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="submit-form">
+                    <input type="submit" value="Nhận tin miễn phí" class="btn-subscribed" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<hr />
+<div class="section-brand">
+    <div class="container">
+        <div class="slide-brand">
+            <div class="brand-item"><a href=""><img src="~/Content/Images/brand/brand1.jpg" /></a></div>
+            <div class="brand-item"><a href=""><img src="~/Content/Images/brand/brand2.jpg" /></a></div>
+            <div class="brand-item"><a href=""><img src="~/Content/Images/brand/brand3.jpg" /></a></div>
+            <div class="brand-item"><a href=""><img src="~/Content/Images/brand/brand4.jpg" /></a></div>
+            <div class="brand-item"><a href=""><img src="~/Content/Images/brand/brand5.jpg" /></a></div>
+            <div class="brand-item"><a href=""><img src="~/Content/Images/brand/brand6.jpg" /></a></div>
+        </div>
+    </div>
+</div>

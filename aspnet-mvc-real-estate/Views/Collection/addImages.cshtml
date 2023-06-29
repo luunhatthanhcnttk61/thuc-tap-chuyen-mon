@@ -1,0 +1,22 @@
+﻿@model aspnet_mvc_real_estate.Models.collections_galery
+@{
+    ViewBag.Title = "Thêm ảnh vào thư viện";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<p>Chọn hình ảnh</p>
+@using (Html.BeginForm("addImages", "Collection", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.EditorFor(model => model.img, new { htmlAttributes = new { type = "file", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.img, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+                <input type="submit" value="Tải ảnh lên" class="btn btn-primary" />
+        </div>
+    </div>
+}

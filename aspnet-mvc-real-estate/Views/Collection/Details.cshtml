@@ -1,0 +1,70 @@
+﻿@model aspnet_mvc_real_estate.Models.collection
+
+@{
+    ViewBag.Title = Model.collections_name + " | Chi tiết dự án";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<p class="text-center">
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.collections_id }) |
+    @Html.ActionLink("Quay lại", "Index")
+</p>
+<div>
+    <dl class="dl-horizontal">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                @Html.DisplayNameFor(model => model.collections_name)
+            </div>
+            <div class="panel-body">
+                @Model.collections_name
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                @Html.DisplayNameFor(model => model.overview)
+            </div>
+            <div class="panel-body">
+                @Html.DisplayFor(model => model.overview)
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                @Html.DisplayNameFor(model => model.video)
+            </div>
+            <div class="panel-body">
+                @Html.DisplayFor(model => model.video)
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                @Html.DisplayNameFor(model => model.introduction)
+            </div>
+            <div class="panel-body">
+                @Html.Raw(Model.introduction)
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                @Html.DisplayNameFor(model => model.information)
+            </div>
+            <div class="panel-body">
+                @Html.Raw(Model.information)
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                @Html.DisplayNameFor(model => model.location)
+            </div>
+            <div class="panel-body">
+                @Html.Raw(Model.location)
+            </div>
+        </div>
+
+    </dl>
+</div>
+

@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SkyLand - Một trong những chủ đầu tư uy tín nhất Việt Nam hiện nay. Tập đoàn SkyLand luôn cung cấp những dự án, giải pháp về căn hộ ưu việt nhất.">
+    <meta name="keywords" content="dự án bất động sản, sản phẩm bất động sản, bất động sản, bất động sản Việt Nam, Skyland, Skyland group">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="LNT Team">
+    <meta name="generator" content="ASP.NET MVC">
+    <link rel="icon" type="image/x-icon" href="~/Content/Images/favicon.png">
+    <title>@ViewBag.Title - SkyLands Group</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/style/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+</head>
+<body>
+    @RenderPage("~/Views/Shared/Header.cshtml")
+    @RenderBody()
+    @RenderPage("~/Views/Shared/Footer.cshtml")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    @Scripts.Render("~/Content/javascript")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

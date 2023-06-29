@@ -1,0 +1,107 @@
+﻿@model aspnet_mvc_real_estate.Models.product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.products_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.products_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.products_slug)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.products_slug)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.area)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.area)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.information)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.information)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.desciption)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.desciption)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.viewCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.viewCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isHot)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isHot)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.collection.collections_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.collection.collections_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.products_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

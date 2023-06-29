@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="80d1a80452c54968b07be855ae6e3728" Name="Diagram1" ZoomLevel="115">
+        <EntityTypeShape EntityType="mvc_real_estate_dbModel.collection" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mvc_real_estate_dbModel.collections_galery" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mvc_real_estate_dbModel.contact" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mvc_real_estate_dbModel.news" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="mvc_real_estate_dbModel.news_comment" Width="1.5" PointX="8" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mvc_real_estate_dbModel.product" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mvc_real_estate_dbModel.products_galery" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mvc_real_estate_dbModel.subscribed" Width="1.5" PointX="5.75" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="mvc_real_estate_dbModel.FK__collectio__colle__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="mvc_real_estate_dbModel.FK__products__collec__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="mvc_real_estate_dbModel.FK__news_comm__news___30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="mvc_real_estate_dbModel.FK__products___produ__2C3393D0" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

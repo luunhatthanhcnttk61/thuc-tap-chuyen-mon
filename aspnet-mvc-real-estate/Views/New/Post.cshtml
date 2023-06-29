@@ -1,0 +1,147 @@
+﻿@model aspnet_mvc_real_estate.Models.NewsViewModels
+@using Microsoft.AspNet.Identity;
+@{
+    ViewBag.Title = Model.news.news_name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bg-contact">
+    <div class="title-page">Tin tức</div>
+    <div class="breadcrumb">@Html.ActionLink("Trang chủ", "Index", "Home") / @Html.ActionLink("Tin tức", "Category", "New") / @Model.news.news_name</div>
+</div>
+<br />
+<section class="container post-category">
+    <aside class="post-category-aside">
+        <!-- danh mục  -->
+        <div class="post-category-aside-news">
+            <span class="post-category-title">Danh mục tin tức</span>
+            <div class="post-category-link">
+                <p><a href="@Url.Action("Index", "Home")" class="nav-link">Trang chủ</a></p>
+                <p><a href="@Url.Action("About", "Home")" class="nav-link">Giới thiệu</a></p>
+                <p><a href="@Url.Action("Category", "Collection")" class="nav-link">Dự án bất động sản</a></p>
+                <p><a href="@Url.Action("Category", "New")" class="nav-link">Tin tức</a></p>
+                <p><a href="@Url.Action("Contact", "Home")" class="nav-link">Liên hệ</a></p>
+            </div>
+        </div>
+        <!-- tin tức xem nhiều -->
+        <div class="post-category-aside-hotnews">
+            <span class="post-category-title">Tin tức xem nhiều</span>
+            <div class="post-hot">
+                <!-- Each blog item is one product -->
+                @foreach (var item in ViewBag.hotNews)
+                {
+                    <div class="post-hot-item1">
+                        <img src="~/Content/Images/Post/@item.thumbnail" class="post-item-thumb1" />
+                        <div class="post-item-content1">
+                            <div class="blog-item-name"><a href="@Url.Action("Post", "New", new {slug = item.news_slug, id = item.news_id})">@item.news_name</a></div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <!-- Image Advertisement -->
+        <div>
+            <img src="~/Content/Images/banner_blog_section.jpg" width="100%" />
+        </div>
+    </aside>
+    <main class="post-category-main">
+        <div class="post-title">
+            <span>@Model.news.news_name</span>
+        </div>
+        <div class="post-date">
+            <span><i class="fa-solid fa-calendar-days"></i> @Model.news.postdate - (@Model.news_comment.Count() Bình luận)</span>
+        </div>
+        <div class="post-content">
+            @Html.Raw(Model.news.content)
+        </div>
+        <div class="post-sharing">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=@GetHelpers.GetCurrentUrl()" target="_blank" class="icon-facebook"><i class="fa-brands fa-facebook"></i> Facebook</a>
+            <a href="https://twitter.com/intent/tweet?url=@GetHelpers.GetCurrentUrl()" target="_blank" class="icon-twitter"><i class="fa-brands fa-twitter"></i> Twitter</a>
+            <a href="https://www.linkedin.com/shareArticle?url=@GetHelpers.GetCurrentUrl()" target="_blank" class="icon-linkedin"><i class="fa-brands fa-linkedin"></i> Linkedin</a>
+            <a href="https://telegram.me/share/url?url=@GetHelpers.GetCurrentUrl()" target="_blank" class="icon-twitter"><i class="fa-brands fa-telegram"></i> Telegram</a>
+            <a href="https://plus.google.com/share?url=@GetHelpers.GetCurrentUrl()" target="_blank" class="icon-google-plus"><i class="fa-brands fa-google-plus-g"></i> Google+</a>
+        </div>
+        <hr />
+
+        <div class="form-horizontal">
+            <div class="contact-h1">BÌNH LUẬN - PHẢN HỒI</div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @using (Html.BeginForm("Comment", "New", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-contact">
+                    <div class="row">
+                        @Html.Hidden("news_id", Model.news.news_id)
+                        <div class="col-md-6">
+                            @Html.Editor("username", new { htmlAttributes = new { @class = "form-contact-input", placeholder = "Họ và tên" } })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.Editor("email", new { htmlAttributes = new { @class = "form-contact-input", placeholder = "Email" } })
+                        </div>
+                    </div>
+                    <div class="contact-input-line">
+                        @Html.TextArea("message", new { @class = "form-contact-input-2", placeholder = "Nội dung" })
+                    </div>
+                    <p class="text-danger">@ViewBag.ErrorMessage</p>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <input type="submit" value="Bình luận" class="btn-contact" />
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="post-comment-show">
+                @foreach (var item in Model.news_comment)
+                {
+                    <div class="post-comment-item">
+                        <div class="post-comment-item-aside">
+                            <img src="~/Images/Icon/corporate-user-icon.png" />
+                        </div>
+                        <div class="post-comment-item-main">
+                            <span class="post-comment-item-main-name">@item.username</span><br />
+                            <span class="post-comment-item-main-admin">
+                                @if (Request.IsAuthenticated)
+                                {
+                                    <a style="cursor:pointer" data-toggle="modal" data-target="#cfm-del-@item.news_comment_id">[Xóa] </a>
+                                }
+                                @item.email
+                            </span>
+                            <hr />
+                            <p class="post-comment-item-main-content">@item.message</p>
+                        </div>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="cfm-del-@item.news_comment_id" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Xác nhận xóa</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Bạn có chắc muốn xóa bình luận của <b>@item.username (@item.news_comment_id)</b>? </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="modal-action">
+                                        @using (Html.BeginForm("DeleteComment", "New", new { id = item.news_comment_id }))
+                                        {
+                                            @Html.AntiForgeryToken()
+
+                                            <div class="form-actions no-color">
+                                                <input type="submit" value="Xác nhận" class="btn btn-danger" />
+                                            </div>
+                                        }
+
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </main>
+</section>

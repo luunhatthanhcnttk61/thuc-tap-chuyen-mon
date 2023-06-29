@@ -1,0 +1,111 @@
+﻿@model aspnet_mvc_real_estate.Models.product
+
+@{
+    ViewBag.Title = "Thêm bất động sản";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("Create", "Product", FormMethod.Post)) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="admin-form">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="admin-form-item">
+        <div class="admin-form-label">
+            @Html.LabelFor(model => model.products_name, htmlAttributes: new { @class = "form-control-label" })
+        </div>
+        <div class="form-group admin-form-input">
+            @Html.EditorFor(model => model.products_name, new { htmlAttributes = new { @class = "form-control w75" } })
+            @Html.ValidationMessageFor(model => model.products_name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="admin-form-item">
+        <div class="admin-form-label">
+            @Html.LabelFor(model => model.area, htmlAttributes: new { @class = "form-control-label" })
+        </div>
+        <div class="form-group admin-form-input">
+            @Html.EditorFor(model => model.area, new { htmlAttributes = new { @class = "form-control w75" } })
+            @Html.ValidationMessageFor(model => model.area, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="admin-form-item">
+        <div class="admin-form-label">
+            @Html.LabelFor(model => model.information, htmlAttributes: new { @class = "form-control-label" })
+        </div>
+        <div class="form-group admin-form-input">
+            @Html.TextAreaFor(model => model.information, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.information, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <script>
+        CKEDITOR.replace("information");
+    </script>
+    <div class="admin-form-item">
+        <div class="admin-form-label">
+            @Html.LabelFor(model => model.desciption, htmlAttributes: new { @class = "form-control-label" })
+        </div>
+        <div class="form-group admin-form-input">
+            @Html.TextAreaFor(model => model.desciption, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.desciption, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <script>
+        CKEDITOR.replace("desciption");
+    </script>
+    <div class="admin-form-item">
+        <div class="admin-form-label">
+            @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "form-control-label" })
+        </div>
+        <div class="form-group admin-form-input">
+            @Html.TextAreaFor(model => model.address, new { @class = "form-control", rows = '5' })
+            @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="admin-form-item">
+        <div class="admin-form-label">
+            @Html.LabelFor(model => model.price, htmlAttributes: new { @class = "form-control-label" })
+        </div>
+        <div class="form-group admin-form-input">
+            @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control w75" } })
+            @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="admin-form-item">
+        <div class="admin-form-label">
+            @Html.LabelFor(model => model.type, htmlAttributes: new { @class = "form-control-label" })
+        </div>
+        <div class="form-group admin-form-input">
+            <select name="type" id="type" class="form-control">
+                <option value="1">Chung Cư</option>
+                <option value="2">Căn Hộ</option>
+                <option value="3">Đất Nền</option>
+                <option value="4">Biệt Thư</option>
+                <option value="5">Nhà Ở</option>
+            </select>
+            @Html.ValidationMessageFor(model => model.type, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="admin-form-item">
+        <div class="admin-form-label">
+            @Html.LabelFor(model => model.isHot, htmlAttributes: new { @class = "form-control-label" })
+        </div>
+        <div class="form-group admin-form-input">
+            @Html.EditorFor(model => model.isHot, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="admin-form-item">
+        <div class="admin-form-label">
+            @Html.LabelFor(model => model.collection.collections_name, htmlAttributes: new { @class = "form-control-label" })
+        </div>
+        <div class="form-group admin-form-input">
+            @Html.DropDownList("collections_id", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.collections_id, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="admin-form-submit">
+        <input type="submit" value="Tạo dự án" class="btn btn-primary" />  @Html.ActionLink("Quay lại", "Index", "Collection", new { @class = "btn btn-primary btn-outline" })
+    </div>
+</div>
+}

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<aspnet_mvc_real_estate.Models.news_comment>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.message)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.news.news_name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.message)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.news.news_name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.news_comment_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.news_comment_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.news_comment_id })
+        </td>
+    </tr>
+}
+
+</table>

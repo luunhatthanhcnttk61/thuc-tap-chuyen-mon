@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="mvc_real_estate_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="collections">
+    <Key>
+      <PropertyRef Name="collections_id" />
+    </Key>
+    <Property Name="collections_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="collections_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="collections_slug" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="overview" Type="ntext" Nullable="false" />
+    <Property Name="video" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="introduction" Type="ntext" Nullable="false" />
+    <Property Name="information" Type="ntext" Nullable="false" />
+    <Property Name="location" Type="ntext" Nullable="false" />
+  </EntityType>
+  <EntityType Name="collections_galery">
+    <Key>
+      <PropertyRef Name="collections_galery_id" />
+    </Key>
+    <Property Name="collections_id" Type="int" Nullable="false" />
+    <Property Name="collections_galery_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="img" Type="nvarchar" MaxLength="300" Nullable="false" />
+  </EntityType>
+  <EntityType Name="contact">
+    <Key>
+      <PropertyRef Name="contact_id" />
+    </Key>
+    <Property Name="contact_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fullname" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="phone" Type="nvarchar" MaxLength="11" Nullable="false" />
+    <Property Name="conMessage" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="isSeen" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="news">
+    <Key>
+      <PropertyRef Name="news_id" />
+    </Key>
+    <Property Name="news_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="news_name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="news_slug" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="content" Type="ntext" Nullable="false" />
+    <Property Name="thumbnail" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="postdate" Type="datetime" Nullable="false" />
+    <Property Name="viewCount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="news_comment">
+    <Key>
+      <PropertyRef Name="news_comment_id" />
+    </Key>
+    <Property Name="news_comment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="news_id" Type="int" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="message" Type="nvarchar" MaxLength="1500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="products">
+    <Key>
+      <PropertyRef Name="products_id" />
+    </Key>
+    <Property Name="products_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="products_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="products_slug" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="area" Type="nvarchar" MaxLength="400" Nullable="false" />
+    <Property Name="information" Type="ntext" Nullable="false" />
+    <Property Name="desciption" Type="ntext" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="type" Type="int" Nullable="false" />
+    <Property Name="viewCount" Type="int" Nullable="false" />
+    <Property Name="isHot" Type="bit" Nullable="false" />
+    <Property Name="collections_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="products_galery">
+    <Key>
+      <PropertyRef Name="products_galery_id" />
+    </Key>
+    <Property Name="products_galery_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="products_id" Type="int" Nullable="false" />
+    <Property Name="img" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="subscribed">
+    <Key>
+      <PropertyRef Name="subscribed_id" />
+    </Key>
+    <Property Name="subscribed_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__collectio__colle__267ABA7A">
+    <End Role="collections" Type="Self.collections" Multiplicity="1" />
+    <End Role="collections_galery" Type="Self.collections_galery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="collections">
+        <PropertyRef Name="collections_id" />
+      </Principal>
+      <Dependent Role="collections_galery">
+        <PropertyRef Name="collections_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__news_comm__news___30F848ED">
+    <End Role="news" Type="Self.news" Multiplicity="1" />
+    <End Role="news_comment" Type="Self.news_comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="news">
+        <PropertyRef Name="news_id" />
+      </Principal>
+      <Dependent Role="news_comment">
+        <PropertyRef Name="news_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__products___produ__2C3393D0">
+    <End Role="products" Type="Self.products" Multiplicity="1" />
+    <End Role="products_galery" Type="Self.products_galery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="products_id" />
+      </Principal>
+      <Dependent Role="products_galery">
+        <PropertyRef Name="products_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__products__collec__29572725">
+    <End Role="collections" Type="Self.collections" Multiplicity="1" />
+    <End Role="products" Type="Self.products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="collections">
+        <PropertyRef Name="collections_id" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="collections_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="mvc_real_estate_dbModelStoreContainer">
+    <EntitySet Name="collections" EntityType="Self.collections" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="collections_galery" EntityType="Self.collections_galery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="contact" EntityType="Self.contact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="news" EntityType="Self.news" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="news_comment" EntityType="Self.news_comment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="products_galery" EntityType="Self.products_galery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="subscribed" EntityType="Self.subscribed" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__collectio__colle__267ABA7A" Association="Self.FK__collectio__colle__267ABA7A">
+      <End Role="collections" EntitySet="collections" />
+      <End Role="collections_galery" EntitySet="collections_galery" />
+    </AssociationSet>
+    <AssociationSet Name="FK__news_comm__news___30F848ED" Association="Self.FK__news_comm__news___30F848ED">
+      <End Role="news" EntitySet="news" />
+      <End Role="news_comment" EntitySet="news_comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__products___produ__2C3393D0" Association="Self.FK__products___produ__2C3393D0">
+      <End Role="products" EntitySet="products" />
+      <End Role="products_galery" EntitySet="products_galery" />
+    </AssociationSet>
+    <AssociationSet Name="FK__products__collec__29572725" Association="Self.FK__products__collec__29572725">
+      <End Role="collections" EntitySet="collections" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

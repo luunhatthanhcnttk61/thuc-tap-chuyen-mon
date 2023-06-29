@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Thông tin người dùng";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+    var user = ViewBag.user;
+}
+
+<div class="user-detail">
+    <div class="user-detail-info">
+        <table class="table table-bordered">
+            <tr>
+                <td>Id người dùng</td>
+                <td>@user.Id <a href=""><i class="fa fa-copy"></i></a></td>
+            </tr>
+            <tr>
+                <td>Họ tên</td>
+                <td>@user.FullName</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>@user.Email</td>
+            </tr>
+            <tr>
+                <td>Số điện thoại</td>
+                <td>@user.PhoneNumber</td>
+            </tr>
+            <tr>
+                <td>Giới tính</td>
+                @if (!user.Gender)
+                {
+                    <td>Nam</td>
+                }
+                else
+                {
+                    <td>Nữ</td>
+                }
+            </tr>
+            <tr>
+                <td>Địa chỉ</td>
+                <td>@user.Address</td>
+            </tr>
+            <tr>
+                <td>Quyền Admin</td>
+
+                
+                @if (user.isAdmin)
+                {
+                    <td>Có</td>
+                }
+                else
+                {
+                    <td>Không</td>
+                }
+            </tr>
+        </table>
+    </div>
+    <p class="text-center">
+        @Html.ActionLink("Chỉnh sửa thông tin", "Edit", new { Email = user.Email}) |
+        @Html.ActionLink("Đổi mật khẩu", "ChangePassword", "Manage")
+    </p>
+</div>
+

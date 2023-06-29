@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="mvc_real_estate_dbModelStoreContainer" CdmEntityContainer="mvc_real_estate_db_entity">
+    <EntitySetMapping Name="collections">
+      <EntityTypeMapping TypeName="mvc_real_estate_dbModel.collection">
+        <MappingFragment StoreEntitySet="collections">
+          <ScalarProperty Name="collections_id" ColumnName="collections_id" />
+          <ScalarProperty Name="collections_name" ColumnName="collections_name" />
+          <ScalarProperty Name="collections_slug" ColumnName="collections_slug" />
+          <ScalarProperty Name="overview" ColumnName="overview" />
+          <ScalarProperty Name="video" ColumnName="video" />
+          <ScalarProperty Name="introduction" ColumnName="introduction" />
+          <ScalarProperty Name="information" ColumnName="information" />
+          <ScalarProperty Name="location" ColumnName="location" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="collections_galery">
+      <EntityTypeMapping TypeName="mvc_real_estate_dbModel.collections_galery">
+        <MappingFragment StoreEntitySet="collections_galery">
+          <ScalarProperty Name="collections_id" ColumnName="collections_id" />
+          <ScalarProperty Name="collections_galery_id" ColumnName="collections_galery_id" />
+          <ScalarProperty Name="img" ColumnName="img" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contacts">
+      <EntityTypeMapping TypeName="mvc_real_estate_dbModel.contact">
+        <MappingFragment StoreEntitySet="contact">
+          <ScalarProperty Name="contact_id" ColumnName="contact_id" />
+          <ScalarProperty Name="fullname" ColumnName="fullname" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="conMessage" ColumnName="conMessage" />
+          <ScalarProperty Name="isSeen" ColumnName="isSeen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="news">
+      <EntityTypeMapping TypeName="mvc_real_estate_dbModel.news">
+        <MappingFragment StoreEntitySet="news">
+          <ScalarProperty Name="news_id" ColumnName="news_id" />
+          <ScalarProperty Name="news_name" ColumnName="news_name" />
+          <ScalarProperty Name="news_slug" ColumnName="news_slug" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+          <ScalarProperty Name="postdate" ColumnName="postdate" />
+          <ScalarProperty Name="viewCount" ColumnName="viewCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="news_comment">
+      <EntityTypeMapping TypeName="mvc_real_estate_dbModel.news_comment">
+        <MappingFragment StoreEntitySet="news_comment">
+          <ScalarProperty Name="news_comment_id" ColumnName="news_comment_id" />
+          <ScalarProperty Name="news_id" ColumnName="news_id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="message" ColumnName="message" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="mvc_real_estate_dbModel.product">
+        <MappingFragment StoreEntitySet="products">
+          <ScalarProperty Name="products_id" ColumnName="products_id" />
+          <ScalarProperty Name="products_name" ColumnName="products_name" />
+          <ScalarProperty Name="products_slug" ColumnName="products_slug" />
+          <ScalarProperty Name="area" ColumnName="area" />
+          <ScalarProperty Name="information" ColumnName="information" />
+          <ScalarProperty Name="desciption" ColumnName="desciption" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="viewCount" ColumnName="viewCount" />
+          <ScalarProperty Name="isHot" ColumnName="isHot" />
+          <ScalarProperty Name="collections_id" ColumnName="collections_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="products_galery">
+      <EntityTypeMapping TypeName="mvc_real_estate_dbModel.products_galery">
+        <MappingFragment StoreEntitySet="products_galery">
+          <ScalarProperty Name="products_galery_id" ColumnName="products_galery_id" />
+          <ScalarProperty Name="products_id" ColumnName="products_id" />
+          <ScalarProperty Name="img" ColumnName="img" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="subscribeds">
+      <EntityTypeMapping TypeName="mvc_real_estate_dbModel.subscribed">
+        <MappingFragment StoreEntitySet="subscribed">
+          <ScalarProperty Name="subscribed_id" ColumnName="subscribed_id" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

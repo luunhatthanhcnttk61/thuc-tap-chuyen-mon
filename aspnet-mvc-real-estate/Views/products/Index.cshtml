@@ -1,0 +1,94 @@
+﻿@model IEnumerable<aspnet_mvc_real_estate.Models.product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.products_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.products_slug)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.area)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.information)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.desciption)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.viewCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isHot)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.collection.collections_name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.products_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.products_slug)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.area)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.information)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.desciption)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.viewCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isHot)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.collection.collections_name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.products_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.products_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.products_id })
+        </td>
+    </tr>
+}
+
+</table>

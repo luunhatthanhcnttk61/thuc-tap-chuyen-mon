@@ -1,0 +1,202 @@
+﻿@model IEnumerable<aspnet_mvc_real_estate.Models.subscribed>
+@{
+    ViewBag.Title = "Bảng quản trị";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+@{ 
+    //Init data
+    var users = ViewBag.users;
+    var collections = ViewBag.collections;
+    var products = ViewBag.product;
+    var news = ViewBag.news;
+    var contacts = ViewBag.contact;
+    var subscribeds = ViewBag.subscribed;
+}
+<div class="row">
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-tasks fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">@collections.Count</div>
+                        <div>Dự án</div>
+                    </div>
+                </div>
+            </div>
+            <a href="@Url.Action("Index", "Collection")">
+                <div class="panel-footer">
+                    <span class="pull-left">Xem</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-building fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">@products.Count</div>
+                        <div>Bất động sản</div>
+                    </div>
+                </div>
+            </div>
+            <a href="@Url.Action("Index", "Product")">
+                <div class="panel-footer">
+                    <span class="pull-left">Xem</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-pager fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">@news.Count</div>
+                        <div>Bài viết</div>
+                    </div>
+                </div>
+            </div>
+            <a href="@Url.Action("Index", "New")">
+                <div class="panel-footer">
+                    <span class="pull-left">Xem</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-user fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">@users.Count</div>
+                        <div>Người dùng</div>
+                    </div>
+                </div>
+            </div>
+            <a href="@Url.Action("Index", "User")">
+                <div class="panel-footer">
+                    <span class="pull-left">Xem</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-building fa-fw"></i> Danh sách bất động sản
+            </div>
+            <div class="panel-body">
+                @for (int i = 0; i < 5; i++)
+                {
+                    <a href="@Url.Action("Edit", "Product", new {id = products[i].products_id})" class="list-group-item">
+                        <p class="admin-index_title">#@products[i].products_id @products[i].products_name</p>
+                        <div class="admin-index_content">@Html.Raw(products[i].information)</div>
+                    </a>
+                }
+                <a href="@Url.Action("Index", "Product")" class="btn btn-default btn-block">Xem tất cả</a>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-tasks fa-fw"></i> Danh sách dự án
+            </div>
+            <div class="panel-body">
+                @for (int i = 0; i < 5; i++)
+                {
+                    <a href="@Url.Action("Details", "Collection", new {id = collections[i].collections_id})" class="list-group-item">
+                        <p class="admin-index_title">#@collections[i].collections_id @collections[i].collections_name</p>
+                    </a>
+                }
+                <a href="@Url.Action("Index", "Collection")" class="btn btn-default btn-block">Xem tất cả</a>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-pager fa-fw"></i> Danh sách bài viết
+            </div>
+            <div class="panel-body">
+                @for (int i = 0; i < 5; i++)
+                {
+                    <a href="@Url.Action("Edit", "New", new {id = news[i].news_id})" class="list-group-item">
+                        <p class="admin-index_title">#@news[i].news_id @news[i].news_name</p>
+                        <div class="admin-index_content">@Html.Raw(news[i].content)</div>
+                    </a>
+                }
+                <a href="@Url.Action("Index", "New")" class="btn btn-default btn-block">Xem tất cả</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-contact-card fa-fw"></i> Liên hệ - hỗ trợ
+            </div>
+            <div class="panel-body">
+                <div class="list-group">
+                    @foreach (var item in contacts)
+                    {
+                        if (item.isSeen == 0)
+                        {
+                            <a href="" class="list-group-item">
+                                <p class="admin-index_title">Liên hệ từ @item.fullname <span class="label label-danger">new</span></p>
+                                <p class="admin-index_content">@item.conMessage</p>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="" class="list-group-item">
+                                <p class="admin-index_title">Liên hệ từ @item.fullname</p>
+                                <p class="admin-index_content">@item.conMessage</p>
+                            </a>
+                        }
+                    }
+                </div>
+                <a href="@Url.Action("Index", "Contact")" class="btn btn-default btn-block">Xem tất cả</a>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-user-check fa-fw"></i> Danh sách đăng kí
+            </div>
+            <div class="panel-body">
+                <div class="list-group"> 
+                    @foreach (var item in subscribeds)
+                    {
+                        var index = subscribeds.IndexOf(item) + 1;
+                        <p class="list-group-item">@index.  @item.email</p>
+
+                    }
+                </div>
+                
+                <a href="@Url.Action("Index", "Subscribeds")" class="btn btn-default btn-block">Xem tất cả</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+﻿@model aspnet_mvc_real_estate.Models.collection
+
+@{
+    ViewBag.Title = "Xóa dự án " + Model.collections_name;
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<div>
+    <h3>Xác nhận xóa dự án: </h3>
+    <h4 class="text-center"><b>#@Model.collections_id @Model.collections_name</b></h4>
+    <br />
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color text-center">
+            <input type="submit" value="Xác nhận xóa" class="btn btn-danger" />
+            @Html.ActionLink("Quay lại", "Index", "Collection", new { @class = "btn btn-danger btn-outline" })
+        </div>
+    }
+</div>

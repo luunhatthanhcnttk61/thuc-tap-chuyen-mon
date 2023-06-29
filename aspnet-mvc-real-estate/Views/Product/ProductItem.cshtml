@@ -1,0 +1,216 @@
+﻿@model aspnet_mvc_real_estate.Models.product
+
+@{
+    ViewBag.Title = @Model.products_name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bg-contact">
+    <div class="title-page">@Model.products_name</div>
+    <div class="breadcrumb">@Html.ActionLink("Trang chủ", "Category", "Home") / @Model.collection.collections_name / @Model.products_name</div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="details-product">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="rows row-width">
+                    <!--Product_Img_Slider-->
+                    <div class="product-detail-left product-images col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="rows">
+                            <div class="slider-container">
+                                <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
+                                    <div class="swiper-wrapper">
+                                        @foreach (var img in Model.products_galery)
+                                        {
+                                            <div class="swiper-slide">
+                                                <img src="~/Images/Product/@img.img" />
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                            </div>
+
+
+                            <div thumbsSlider="" class="swiper mySwiper">
+                                <div class="swiper-wrapper">
+                                    @foreach (var img in Model.products_galery)
+                                    {
+                                        <div class="swiper-slide">
+                                            <img src="~/Images/Product/@img.img" />
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--Product_Details-->
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 details-pro">
+                        <h1 class="title-product" itemprop="name">@Model.products_name</h1>
+                        <div class="thongtin">
+                            <span class="first_in"><i class="fa-solid fa-hashtag"></i> Mã bất động sản: <span>@Model.products_id</span></span>
+                            <br />
+                            <span class="first_in"><i class="fa-solid fa-earth"></i> Diện tích: <span>@Model.area</span></span>
+                            <br />
+                            <span class="first_in"><i class="fa-solid fa-location-dot"></i> Vị trí: <span>@Model.address</span></span>
+                        </div>
+                        <div class="price-box pricedetails">
+                            <div class="special-price">
+                                <span class="price product-price product-price-convert">@DataTypeHelpers.FormatCurrency(Model.price)</span>
+                                <meta itemprop="price" content="@Model.price">
+                                <meta itemprop="priceCurrency" content="VND">
+                            </div>
+                        </div>
+                        <div class="product-summary product_description">
+                            <span class="nameblock">Thông tin:</span>
+                            <div class="rte description">
+                                @Html.Raw(Model.information)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a href="tel:0848611127" class="btn btn-call-now">
+                                    <span>Liên hệ ngay</span>
+                                    <p>Gọi ngay: 1900 6750</p>
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="@Url.Action("Contact", "Home")" class="btn btn-subscribe">
+                                    <span>Liên hệ hỗ trợ</span>
+                                    <p>Gửi lời nhắn cho chúng tôi</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--Product_Desc-->
+                    <div class="tab_width_full">
+                        <div class="row xs-margin-top-15">
+
+                            <div id="tab_ord" class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                                <!-- Nav tabs -->
+                                <div class="tabs">
+                                    <div class="tab-item active">
+                                        Mô tả
+                                    </div>
+                                    <div class="tab-item">
+                                        Tab tùy chỉnh
+                                    </div>
+                                    <div class="tab-item">
+                                        Đánh giá
+                                    </div>
+                                    <div class="line"></div>
+                                </div>
+
+                                <!-- Tab content -->
+                                <div class="tab-content">
+                                    <div class="tab-pane active">
+                                        <!-- Coding description here -->
+                                        @Html.Raw(Model.desciption)
+                                    </div>
+                                    <div class="tab-pane">
+                                        <!-- Coding modify here -->
+                                    </div>
+                                    <div class="tab-pane">
+                                        <!-- Coding rating here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Product_Related-->
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 related_module">
+            <div class="title_module_main a-left margin-bottom-10">
+                <h2>
+                    <a href="" title="Bất động sản cùng loại">
+                        Bất động sản cùng loại
+                    </a>
+                </h2>
+            </div>
+            <div class="row">
+                @foreach(var item in ViewBag.SameTypeProduct) 
+                { 
+                    <div class="col-md-4 mobile-pt">
+                        <div class="itempro">
+                            <div class="product_item_maucanho">
+                                <div class="thumbimg">
+                                    <a class="image_thumb thumb-product" href="@Url.Action("ProductItem", "Product", new {slug = item.product.products_slug, id = item.product.products_id})" title="@item.product.products_name">
+                                        <img class="img-responsive lazyload loaded" src="~/Images/Product/@item.thumb" alt="@item.product.products_name" data-was-processed="true">
+                                    </a>
+                                </div>
+                                <div class="content_">
+                                    <h3 class="product-name"><a href="@Url.Action("ProductItem", "Product", new {slug = item.product.products_slug, id = item.product.products_id})" title="@item.product.products_name">@item.product.products_name</a></h3>
+                                    <span class="taged">@item.product.area</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+<script>
+    /*Script thumbnail slider*/
+    var swiper = new Swiper(".mySwiper", {
+        loop: true,
+        spaceBetween: 10,
+        slidesPerView: 4,
+        freeMode: true,
+        watchSlidesProgress: true,
+    });
+    var swiper2 = new Swiper(".mySwiper2", {
+        loop: true,
+        spaceBetween: 10,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        thumbs: {
+            swiper: swiper,
+        },
+    });
+
+    /*Script Mô tả + đánh giá sản phẩm*/
+    const $ = document.querySelector.bind(document);
+    const $$ = document.querySelectorAll.bind(document);
+
+    const tabs = $$(".tab-item");
+    const panes = $$(".tab-pane");
+
+    const tabActive = $(".tab-item.active");
+    const line = $(".tabs .line");
+
+    requestIdleCallback(function () {
+        line.style.left = tabActive.offsetLeft + "px";
+        line.style.width = tabActive.offsetWidth + "px";
+    });
+
+    tabs.forEach((tab, index) => {
+        const pane = panes[index];
+
+        tab.onclick = function () {
+            $(".tab-item.active").classList.remove("active");
+            $(".tab-pane.active").classList.remove("active");
+
+            line.style.left = this.offsetLeft + "px";
+            line.style.width = this.offsetWidth + "px";
+
+            this.classList.add("active");
+            pane.classList.add("active");
+        };
+    });
+</script>

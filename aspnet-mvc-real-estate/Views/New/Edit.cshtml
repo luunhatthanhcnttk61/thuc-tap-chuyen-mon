@@ -1,0 +1,53 @@
+﻿@model aspnet_mvc_real_estate.Models.news
+
+@{
+    ViewBag.Title = "Chỉnh sửa bài viết";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("Edit", "New", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.news_id)
+    <div class="admin-form">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="admin-form-item">
+            <div class="admin-form-label">
+                @Html.LabelFor(model => model.news_name, htmlAttributes: new { @class = "form-control-label" })
+            </div>
+            <div class="form-group admin-form-input">
+                @Html.EditorFor(model => model.news_name, new { htmlAttributes = new { @class = "form-control w75" } })
+                @Html.ValidationMessageFor(model => model.news_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="admin-form-item">
+            <div class="admin-form-label">
+                @Html.LabelFor(model => model.content, htmlAttributes: new { @class = "form-control-label" })
+            </div>
+            <div class="form-group admin-form-input">
+                @Html.TextAreaFor(model => model.content, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.content, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <script>
+            CKEDITOR.replace("content");
+        </script>
+        <div class="admin-form-item">
+            <div class="admin-form-label">
+                @Html.LabelFor(model => model.thumbnail, htmlAttributes: new { @class = "form-control-label" })
+            </div>
+            <div class="form-group admin-form-input">
+                @Html.EditorFor(model => model.thumbnail, new { htmlAttributes = new { type = "file", @class = "form-control" } })
+                <img src="~/Content/Images/Post/@Model.thumbnail" />
+                @Html.Hidden("oldimage", Model.thumbnail)
+                @Html.ValidationMessageFor(model => model.thumbnail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="admin-form-submit">
+            <input type="submit" value="Lưu thay đổi" class="btn btn-primary" />  @Html.ActionLink("Quay lại", "Index", "Collection", new { @class = "btn btn-primary btn-outline" })
+        </div>
+    </div>
+}
+
+

@@ -1,0 +1,83 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<aspnet_mvc_real_estate.Models.collection>
+
+@{
+    ViewBag.Title = "Quản lý dự án";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+<p>
+    <a href="@Url.Action("Create", "Collection")" class="btn btn-danger"><i class="fa-solid fa-plus"></i></a>
+    <a href="@Url.Action("Export", "Collection")" class="btn btn-default"><i class="fa-solid fa-file-export"></i></a>
+    <a data-toggle="collapse" data-target="#search" class="btn btn-primary"><i class="fa-solid fa-search"></i></a>
+    <div id="search" class="collapse">
+        @using (Html.BeginForm("Index", "Collection", FormMethod.Get, new { @class = "form-inline" }))
+        {
+            <input type="text" name="searchString" class="form-control mx-sm-3" value="@ViewBag.Keyword" placeholder="Tìm kiếm..." />
+            <button class="btn btn-primary"><i class="fa-solid fa-search"></i></button>
+        }
+    </div>
+</p>
+<div class="admin-collection">
+    @foreach (var item in Model)
+    {
+        <div class="admin-collection-item">
+            <div class="collection--name">#@item.collections_id @item.collections_name</div>
+            <div class="collection--content">@item.overview</div>
+            <div class="collection--action">
+                <a href="@Url.Action("Edit", new { id = item.collections_id })"><i class="fa-solid fa-pen-to-square"></i> Sửa</a>
+                <a href="@Url.Action("Details", new { id = item.collections_id })"><i class="fa-solid fa-pager"></i> Chi tiết</a>
+                <a style="cursor:pointer" data-toggle="modal" data-target="#cfm-del-@item.collections_id"><i class="fa-solid fa-close"></i> Xóa</a>
+                <a href="@Url.Action("Galery", new { id = item.collections_id })" class="h-warning">
+                    <i class="fa-solid fa-photo"></i> Thư viện
+                    @if (item.collections_galery.Count <= 0)
+                    {
+                        <span class="display-warning" data-toggle="tooltip" data-placement="right"
+                              title="Thư viện đang trống, hãy thêm ít nhất một ảnh!">
+                            <i class="fa-solid fa-info-circle"></i>
+                        </span>
+                    }
+                </a>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="cfm-del-@item.collections_id" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Xác nhận xóa</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Bạn có chắc muốn xóa dự án <b>@item.collections_name</b>? </p>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="modal-action">
+                                @using (Html.BeginForm("Delete", "Collection", new { id = item.collections_id }))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <div class="form-actions no-color">
+                                        <input type="submit" value="Xác nhận" class="btn btn-danger" />
+                                    </div>
+                                }
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+@if (Model.PageCount > 1)
+{
+    <div class="text-center">
+        @Html.PagedListPager(Model, page => Url.Action("", new { page }))
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>

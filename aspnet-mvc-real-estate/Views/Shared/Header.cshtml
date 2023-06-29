@@ -1,0 +1,33 @@
+﻿<div class="container header">
+    <div class="header-main">
+        <div id="bars-wrapper">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <div class="logo-wrapper">
+            <a href="/">
+                <img src="~/Content/Images/logo.png" alt="Bđs Skylands" />
+            </a>
+        </div>
+        <div class="navigation">
+            <div id="dark-background"></div>
+            <ul id="nav-bar-menu">
+                <li class="navbar-item">@Html.ActionLink("trang chủ", "Index", "Home", null, new { @class = "navbar-item-link" })</li>
+                <li class="navbar-item">@Html.ActionLink("giới thiệu", "About", "Home", null, new { @class = "navbar-item-link" })</li>
+                <li class="navbar-item">@Html.ActionLink("dự án bất động sản", "Category", "Collection", null, new { @class = "navbar-item-link" })</li>
+                <li class="navbar-item">@Html.ActionLink("tin tức", "Category", "New", null, new { @class = "navbar-item-link" })</li>
+                <li class="navbar-item">@Html.ActionLink("liên hệ", "Contact", "Home", null, new { @class = "navbar-item-link" })</li>
+                <li class="navbar-item">
+                    <a href="/?redirect=facebook" class="navbar-item-link"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="/?redirect=instagram" class="navbar-item-link"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="/?redirect=twitter" class="navbar-item-link"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="/?redirect=gmail" class="navbar-item-link"><i class="fa-solid fa-envelope"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div id="btn-close"><i class="fa-solid fa-xmark"></i></div>
+        <div class="contact-phone">
+            <a href="tel:0898516474><i class="fa-solid fa-phone"></i> 1900.6750</a>
+        </div>
+    </div>
+</div>
+

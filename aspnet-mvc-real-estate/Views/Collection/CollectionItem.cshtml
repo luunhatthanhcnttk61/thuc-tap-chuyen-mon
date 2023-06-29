@@ -1,0 +1,90 @@
+﻿@model aspnet_mvc_real_estate.Models.collection
+@{
+    ViewBag.Title = "Dự án #" + Model.collections_id + " " + Model.collections_name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="begin-body"></div>
+<section class="collection-item--overview">
+    <div class="container">
+        <div class="collection-item--name">
+            <span>#@Model.collections_id @Model.collections_name</span>
+        </div>
+        <div class="collection-item--headsite">
+            <div class="row">
+                <div class="col-md-3">
+                    <span class="collection-item--title">Giới thiệu <span class="text-primary">dự án</span></span>
+                    <div class="collection-item--content">@Model.overview</div>
+                </div>
+                <div class="col-md-9 mobile-pt">
+                    <iframe src="https://www.youtube.com/embed/@ViewBag.videoId" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="collection-item-main">
+    <div class="container">
+        <div class="collection-item--introduce">
+            @Html.Raw(Model.introduction)
+
+        </div>
+        <div class="pill-pane">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#information" class="pill-title">Thông tin dự án</a></li>
+                <li><a data-toggle="tab" href="#location" class="pill-title">Vị trí dự án</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="information" class="tab-pane fade in active">
+                    <!-- Information -->
+                    @Html.Raw(Model.information)
+                </div>
+                <div id="location" class="tab-pane fade">
+                    <!-- Location -->
+                    @Html.Raw(Model.location)
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div>
+    <img decoding="async" class="size-full wp-image-5771 aligncenter" alt="" width="310" height="13" srcset="https://skylandvietnam.vn/wp-content/uploads/2019/05/b1.png 310w, https://skylandvietnam.vn/wp-content/uploads/2019/05/b1-280x13.png 280w" sizes="(max-width: 310px) 100vw, 310px">
+</div>
+<section class="collection-item-galery">
+    <p class="collection-item--title collection--galery">Thư viện hình ảnh dự án</p>
+    <div class="collection-galery">
+        @foreach (var item in Model.collections_galery)
+        {
+            <a href="~/Images/Collections/@item.img" title="@Model.collections_slug" target="_blank">
+                <img src="~/Images/Collections/@item.img" alt="@Model.collections_slug" />
+            </a>
+        }
+    </div>
+</section>
+
+<section class="collection-item-product">
+    <div class="container">
+        <a href="@Url.Action("Category", "Product", new { collection = Model.collections_id })"><p class="collection-item--title collection--galery">Các sản phẩm của Simcity Primier</p></a>
+        <div class="row">
+            @foreach (var item in ViewBag.products)
+            {
+                <div class="col-md-4 mobile-pt">
+                    <div class="item-project-img hot">
+                        <img src="~/Images/Product/@item.thumb" />
+                    </div>
+                    <div class="item-project-body">
+                        <div class="item-project-name">@item.product.products_name</div>
+                        <div class="item-project-desc">@Html.Raw(item.product.information)</div>
+                        <div class="item-project-address"><i class="fa-solid fa-location-dot text-info"></i> @item.product.address</div>
+                        <div class="item-project-type"><i class="fa-solid fa-building text-info"></i> Loại BĐS: @aspnet_mvc_real_estate.Models.RE_TypeModels.Find(item.product.type).name</div>
+                        <div class="item-project-area"><i class="fa-solid fa-earth-americas text-info"></i> Diện tích: @item.product.area</div>
+                    </div>
+                    <div class="item-project-action">
+                        <div class="item-project-price">@DataTypeHelpers.FormatCurrency(item.product.price)</div>
+                        <a href="@Url.Action("ProductItem", "Product", new { slug = item.product.products_slug, id = item.product.products_id})" class="btn-detail">Xem chi tiết</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

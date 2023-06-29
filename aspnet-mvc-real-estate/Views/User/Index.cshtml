@@ -1,0 +1,96 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<aspnet_mvc_real_estate.Models.ApplicationUser>
+@{
+    ViewBag.Title = "Quản lý người dùng";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<p>
+    <a href="@Url.Action("Register", "Account")" class="btn btn-danger"><i class="fa-solid fa-plus"></i></a>
+    <a href="@Url.Action("Export", "User")" class="btn btn-default"><i class="fa-solid fa-file-export"></i></a>
+    <a data-toggle="collapse" data-target="#search" class="btn btn-primary"><i class="fa-solid fa-search"></i></a>
+    <div id="search" class="collapse">
+        @using (Html.BeginForm("Index", "User", FormMethod.Get, new { @class = "form-inline" }))
+        {
+            <input type="text" name="name" class="form-control mx-sm-3" value="@ViewBag.Name" placeholder="Tìm kiếm..." />
+            <button class="btn btn-primary"><i class="fa-solid fa-search"></i></button>
+        }
+    </div>
+</p>
+<div class="table-responsive">
+    <table class="table-bordered">
+        <tr>
+            <td>Họ tên</td>
+            <td>Email</td>
+            <td>Số điện thoại</td>
+            <td>Địa chỉ</td>
+            <td>Giới tính</td>
+            <td>Quyền Admin</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FullName</td>
+                <td>@item.Email</td>
+                <td>@item.PhoneNumber</td>
+                <td>@item.Address</td>
+                @if (!@item.Gender)
+                {
+                    <td>Nam</td>
+                }
+                else
+                {
+                    <td>Nữ</td>
+                }
+                @if (@item.isAdmin)
+                {
+                    <td>Có</td>
+                }
+                else
+                {
+                    <td>Không</td>
+                }
+                <td>
+                    <a href="@Url.Action("Edit", new {Email = item.Email})">Sửa</a> |
+                    <a style="cursor:pointer" data-toggle="modal" data-target="#cfm-del-@item.Id">Xóa</a>
+                    <!-- Modal -->
+                    <div class="modal fade" id="cfm-del-@item.Id" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Xác nhận xóa</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Bạn có chắc muốn xóa người dùng <b>@item.Email</b>? </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="modal-action">
+                                        @using (Html.BeginForm("Delete", "User", new { id = item.Id }))
+                                        {
+                                            @Html.AntiForgeryToken()
+
+                                            <div class="form-actions no-color">
+                                                <input type="submit" value="Xác nhận" class="btn btn-danger" />
+                                            </div>
+                                        }
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+
+        }
+    </table>
+</div>
+@if (Model.PageCount > 1)
+{
+    <div class="text-center">
+        @Html.PagedListPager(Model, page => Url.Action("", new { page }))
+    </div>
+}

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<aspnet_mvc_real_estate.Models.contact>
+
+@{
+    ViewBag.Title = "Liên hệ - Hỗ trợ";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Liên hệ - Hỗ trợ</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fullname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.conMessage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isSeen)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fullname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.conMessage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isSeen)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.contact_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.contact_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.contact_id })
+        </td>
+    </tr>
+}
+
+</table>

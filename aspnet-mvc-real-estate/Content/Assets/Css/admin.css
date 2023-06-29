@@ -1,0 +1,551 @@
+﻿
+/* Login CSS */
+
+body {
+    font-family: CerebriSans-Bold, -apple-system, system-ui, Roboto, sans-serif;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.admin-header {
+    width: 100%;
+    background: #337ab7;
+    color: #fff;
+    display: flex;
+    height: 70px;
+}
+
+.admin-header-logo {
+    width: 10%;
+    display: block;
+    padding: 20px 10px;
+}
+
+.admin-header-web {
+    width: 20%;
+    display: block;
+    padding: 20px 10px;
+}
+.admin-header-toogle {
+    width: 10%;
+    display: none;
+    padding: 20px 10px;
+}
+
+.admin-header-toogle i {
+    color: #fff;
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+.admin-header-user {
+    width: 70%;
+    display: block;
+    position: relative;
+    margin-top: 25px;
+    margin-right: 15px;
+    text-align: right;
+}
+
+
+.admin-header-logo a {
+    color: #fff;
+    font-size: 20px;
+}
+
+.admin-header-logo a:hover, .admin-header-web a:hover, .admin-header-user a:hover {
+    text-decoration: none;
+}
+
+.admin-header-web a {
+    color: #fff;
+    font-size: 20px;
+}
+
+.user-func {
+    display: none;
+    text-align: left;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 100;
+    background: #fff;
+    border: 1px solid #000;
+    padding: 0 10px;
+    border-radius: .5rem;
+}
+
+.user-func li {
+    padding: 5px 0;
+}
+
+.admin-header-user-name {
+    color: #fff;
+    font-weight: 600;
+}
+.admin-header-user-name:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+
+.user-func li:last-child {
+    border-top: 1px solid #ccc;
+}
+
+.admin-header-user-name:hover .user-func {
+    display: block;
+}
+
+@media only screen and (max-width: 768px) {
+    .admin-header-logo {
+        width: 40%;
+        display: block;
+    }
+
+    .admin-header-web {
+        display: none;
+    }
+
+    .admin-header-toogle {
+        display: block;
+    }
+
+    .admin-header-user {
+        width: 50%;
+        display: block;
+        position: relative;
+        margin-top: 24px;
+        margin-right: 15px;
+        text-align: right;
+        cursor: pointer;
+    }
+}
+
+/* Login Css */
+.bg-login {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 40px 0;
+    background-image: url('https://images.hdqwalls.com/download/newyork-night-buildings-4k-mk-5120x2880.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+.section-login {
+    display: block;
+    position: relative;
+    z-index: 3;
+}
+
+.form-login {
+    width: 100%;
+}
+
+.panel-login {
+    background-color: #16a085;
+}
+
+.p-25 {
+    padding: 25px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.input-login {
+    width: 100%;
+    max-width: 100%;
+    margin: 10px 0;
+    margin-left: 38px;
+    height: 40px;
+    padding-left: 10px;
+    border-radius: 0 .5rem .5rem 0;
+    border: 1px solid #35bf76;
+}
+
+.checkbox-login label {
+    font-weight: 400;
+}
+
+.btn-login {
+    width: 100%;
+    font-size: 16px;
+    background-color: #35bf76;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.input-login-field {
+    display: flex;
+    position: relative;
+}
+
+.input-login-field i {
+    position: absolute;
+    background-color: #35bf76;
+    color: #fff;
+    padding: 13px;
+    border-radius: .5rem 0 0 .5rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.btn-login:hover {
+    background-color: #16a085;
+    color: #fff;
+}
+
+/*  */
+
+.detail-title {
+    font-size: 20px;
+    font-weight: 600;
+    padding-bottom: 15px;
+}
+
+table {
+    width: 100%;
+}
+table td {
+    padding: 10px;
+}
+
+.admin-collection-item {
+    border: 1px solid #ccc;
+    padding: 16px;
+    border-radius: .5rem;
+    margin-bottom: 10px;
+}
+
+.collection--name {
+    font-size: 26px;
+    color: #434a6e;
+    margin-bottom: 10px;
+}
+
+.collection--content {
+    color: #434a6e;
+    text-decoration: none;
+    font-family: "Roboto",sans-serif;
+    line-height: 24px;
+    overflow: hidden;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.collection--content:after {
+    content: "...";
+}
+
+.collection--action {
+    display: block;
+    text-align: right;
+    padding-top: 10px;
+}
+
+.collection--action a {
+    margin-right: 10px;
+    font-size: 16px;
+    color: #000;
+    padding: 3px 5px;
+    border-radius: .5rem;
+    border: 1px solid #000;
+}
+
+.collection--action a:hover {
+    text-decoration: none;
+    color: #d35400;
+    border-color: #d35400;
+}
+
+.page-header {
+    margin-top: 0;
+}
+
+.sidebar {
+    margin-top: 18px;
+}
+
+.collection--action a i {
+    font-size: 18px;
+}
+
+.dropdown-menu {
+    left: auto;
+    right: 0;
+    top: 200%;
+    width: 100px;
+}
+
+@media screen and (max-width: 768px) {
+    .collection--action a {
+        margin-right: 0;
+    }
+    .collection--action {
+        text-align: center;
+    }
+}
+
+/* Form admin style */
+.admin-form {
+    width: 100%;
+}
+
+.form-control-label {
+    position: relative;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.admin-form-submit {
+    padding: 10px 0 30px 0;
+}
+
+.admin-form-submit a {
+    margin-left: 10px;
+}
+
+.radio-form {
+    position: absolute;
+    text-align: center;
+    margin-top: -4px;
+    margin-left: 10px;
+}
+
+.mt-25 {
+    display: flex;
+    margin-top: 25px;
+}
+
+input[type=checkbox], input[type=radio] {
+    line-height: normal;
+    margin-left: 30px;
+    background-color: #337ab7;
+    color: #35bf76;
+}
+
+.form-checkbox {
+    margin-left: 50px;
+    width: 20px;
+    height: 20px;
+}
+
+.tick-form {
+    font-size: 16px;
+    padding: 10px;
+}
+
+.user-input {
+    height: 37px;
+    margin-left: 15px;
+    width: 80%;
+    border: 1px solid #ccc;
+    border-radius: .5rem;
+    padding-left: 10px;
+}
+
+.user-input:focus {
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+    border: none;
+}
+
+.i-address {
+    padding-top: 10px;
+    height: auto;
+}
+
+.error-mes {
+    margin-left: 15px;
+}
+
+/* toggle-rect-color */
+.toggle-rect-color input[type="checkbox"] {
+  display: none;
+}
+.toggle-rect-color input[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  width: 3em;
+  height: 1.6em;
+  margin-bottom: 20px;
+  background: #e84d4d;
+  border-radius: 0.2em;
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.toggle-rect-color input[type="checkbox"] + label:before {
+  content: "";
+  display: block;
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 0.2em;
+  background: #50565a;
+  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: 0.2em;
+  top: 0.2em;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.toggle-rect-color input[type="checkbox"]:checked + label {
+  background: #47cf73;
+}
+.toggle-rect-color input[type="checkbox"]:checked + label:before {
+  box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.2);
+  left: 1.6em;
+}
+
+.w50 {
+    width: 50%;
+}
+
+.w75 {
+    width: 75%;
+}
+
+.img-galery img {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+    .user-input {
+        width: 90%;
+    }
+}
+
+/* News Css*/
+.news-item {
+    display: flex;
+}
+
+.admin-thumb {
+    width: 20%;
+}
+
+.admin-news-info {
+    width: 80%;
+}
+
+.news--name {
+    color: #434a6e;
+    font-size: 22px;
+    margin-left: 10px;
+}
+
+.news--content {
+    color: #434a6e;
+    text-decoration: none;
+    font-family: "Roboto",sans-serif;
+    line-height: 24px;
+    overflow: hidden;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    width: 100%;
+    margin: 10px;
+}
+
+.modal-action {
+    display: flex;
+    float: right;
+}
+
+.modal-dialog {
+    top: 30%;
+    transform: translateY(-50px);
+}
+
+.h-warning {
+    position: relative;
+}
+
+.display-warning {
+    position: absolute;
+    top: -5px;
+    font-size: 10px;
+    z-index: 1;
+}
+
+.file-name {
+    font-size: 16px;
+}
+.delete-file {
+    padding: 0 5px;
+    position: absolute;
+    top: 0;
+    right: 15px;
+    border: 1px solid #dc3545;
+    background-color: #dc3545;
+    color: #fff;
+    font-size: 15px;
+}
+
+.delete-file:hover {
+    background-color: #dc3545;
+    color: #fff;
+    opacity: 1;
+}
+
+.admin-index_title {
+    position: relative;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.admin-index_title span {
+    position: absolute;
+    right: 0px;
+    padding: 5px 7px;
+    text-transform: uppercase;
+}
+
+.admin-index_content {
+    font-size: 14px;
+    line-height: 24px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+@media screen and (max-width: 768px) {
+    .news-item {
+        display: block;
+    }
+    .admin-thumb {
+        width: 100%;
+    }
+
+    .admin-news-info {
+        width: 100%;
+    }
+    .news--name {
+        font-size: 16px;
+        font-weight: 600;
+        margin-left: 0;
+    }
+    .news--content {
+        margin-left: 0;
+        font-size: 14px;
+        -webkit-line-clamp: 1;
+    }
+    .popup-confirm {
+        width: 70%;
+    }
+}

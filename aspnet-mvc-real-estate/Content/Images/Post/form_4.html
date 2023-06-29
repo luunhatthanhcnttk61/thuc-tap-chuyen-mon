@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	.main{
+		border-color:#532366;
+		width:1000px
+	}
+	form fieldset legend{
+		border-style:ridged;
+		background-color:#E3983E;
+		color:white
+	}
+	input{
+		background-color:#F3D2A9;
+	}
+	.orange{
+		background-color:#F3D2A9;
+	}
+	select option{
+		background-color: #F3D2A9;
+	}
+</style>
+</head>
+<center>
+<div class="main">
+<form act="#" method="GET">
+<fieldset>
+	<legend>This is my form</legend>
+	<table cellpadding="10">
+		<tr>
+			<td style="text-align:right">
+				<label for="email">Email:
+			</td>
+			<td style="text-align:left"><input type="email" name="email">
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align:right">
+				password:
+			</td>
+			<td style="text-align:left"><input type="password" name="password">
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align:right">
+				Confirm password:
+			</td>
+			<td style="text-align:left"><input type="password" name="confirmpassword">
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align:right">
+				Upload Your picture:
+			</td>
+			<td style="text-align:left"><input type="file" name="picture">
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align:right">
+				Gender:
+			</td>
+			<td style="text-align:left">
+				<input type="radio" name="gender">Male
+				<input type="radio" name="gender">Female
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align:right">
+				Select Country:
+			</td>
+			<td style="text-align:left">
+				<select name="country">
+					<option name="country">United Kingdom</option>
+					<option name="country">United State</option>
+					<option name="country">Germany</option>
+					<option name="country">Viet Nam</option>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align:right">
+				Hobby::
+			</td>
+			<td style="text-align:left">
+				<input type="checkbox" name="hobby">Cricket
+				<input type="checkbox" name="hobby">Football
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align:right;margin-top:1px">
+				Address:
+			</td>
+			<td style="text-align:left"><textarea class="orange" type="txt" style="height:60px" name="Address" ></textarea>
+			
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align:right">
+			</td>
+			<td style="text-align:left"><input type="submit" name="submit" value="Submit">
+			</td>
+		</tr>
+	</table>
+</fieldset>
+</form>

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<aspnet_mvc_real_estate.Models.news>
+
+
+@{
+    ViewBag.Title = "Category";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bg-contact">
+    <div class="title-page">Tin tức</div>
+    <div class="breadcrumb">@Html.ActionLink("Trang chủ", "Index", "Home") / Tin tức</div>
+</div>
+<br />
+<section class="container post-category">
+    <aside class="post-category-aside">
+        <div class="post-category-aside-news">
+            <span class="post-category-title">Danh mục tin tức</span>
+            <div class="post-category-link">
+                <p><a href="@Url.Action("Index", "Home")" class="nav-link">Trang chủ</a></p>
+                <p><a href="@Url.Action("About", "Home")" class="nav-link">Giới thiệu</a></p>
+                <p><a href="@Url.Action("Category", "Collection")" class="nav-link">Dự án bất động sản</a></p>
+                <p><a href="@Url.Action("Category", "New")" class="nav-link">Tin tức</a></p>
+                <p><a href="@Url.Action("Contact", "Home")" class="nav-link">Liên hệ</a></p>
+            </div>
+        </div>
+        <!-- tin tức xem nhiều -->
+        <div class="post-category-aside-hotnews">
+            <span class="post-category-title">Tin tức xem nhiều</span>
+            <div class="post-hot">
+                <!-- Each blog item is one news -->
+                @foreach (var item in ViewBag.hotNews)
+                {
+                    <div class="post-hot-item1">
+                        <img src="~/Content/Images/Post/@item.thumbnail" class="post-item-thumb1" />
+                        <div class="post-item-content1">
+                            <div class="blog-item-name"><a href="@Url.Action("Post", "New", new {slug = item.news_slug, id = item.news_id})">@item.news_name</a></div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <!-- Image Advertisement -->
+        <div>
+            <img src="~/Content/Images/banner_blog_section.jpg" width="100%" />
+        </div>
+    </aside>
+    <main class="post-category-main">
+        <div class="post-hot">
+            <!-- Each blog item is one news -->
+            @foreach (var item in Model)
+            {
+                <div class="post-hot-item">
+                    <img src="~/Content/Images/Post/@item.thumbnail" class="post-item-thumb" />
+                    <div class="post-item-content">
+                        <div class="post-item-name"><a href="@Url.Action("Post", "New", new {slug = item.news_slug, id = item.news_id})">@item.news_name</a></div>
+                        <div class="post-item-time"><i class="fa-solid fa-calendar-days"></i> @item.postdate</div>
+                        <div class="post-item-content-2">@Html.Raw(item.content)</div>
+                        <div class="post-item-action"><a href="@Url.Action("Post", "New", new {slug = item.news_slug, id = item.news_id})" class="btn btn-success">Xem chi tiết</a></div>
+                    </div>
+                </div>
+            }
+        </div>
+    </main>
+</section>

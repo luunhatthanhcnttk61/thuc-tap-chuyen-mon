@@ -1,0 +1,24 @@
+﻿@model aspnet_mvc_real_estate.Models.news
+
+@{
+    ViewBag.Title = "Xóa bài viết";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<div>
+
+    <div class="dl-horizontal">
+        Bạn có chắc muốn xóa bài viết: <b>@Model.news_name</b> 
+        
+
+    </div>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-danger" /> |
+            @Html.ActionLink("Quay lại", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,35 @@
+﻿@model aspnet_mvc_real_estate.Models.collections_galery
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>collections_galery</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.img)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.img)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.collection.collections_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.collection.collections_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.collections_galery_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

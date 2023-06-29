@@ -1,0 +1,80 @@
+﻿@model aspnet_mvc_real_estate.Models.contact
+@{
+    ViewBag.Title = "Liên hệ chúng tôi";
+}
+<div class="bg-contact">
+    <div class="title-page">Liên hệ</div>
+    <div class="breadcrumb">@Html.ActionLink("Trang chủ", "Index", "Home") / Liên hệ</div>
+</div>
+<br />
+<div class="container">
+    <div class="contact-location">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62714.71044999469!2d106.62950815820311!3d10.759942000000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f133205c795%3A0xff68c0258b48ac89!2sC%C3%B4ng%20ty%20TNHH%20BDS%20SKYLAND!5e0!3m2!1svi!2s!4v1679638626953!5m2!1svi!2s" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="contact-h1">CÔNG TY CỔ PHẦN ĐẦU TƯ BẤT ĐỘNG SẢN SKYLAND</div>
+            <div class="descript">Được th&agrave;nh lập v&agrave;o ng&agrave;y 20/08/2008 với niềm đam m&ecirc; v&agrave; kh&aacute;t vọng th&agrave;nh c&ocirc;ng trong lĩnh vực bất động sản. Nhờ chiến lược r&otilde; r&agrave;ng v&agrave; hướng đi đ&uacute;ng, SkyLand đ&atilde; nhanh ch&oacute;ng ph&aacute;t triển v&agrave; đạt được những th&agrave;nh c&ocirc;ng nhất định.</div>
+            <ul class="mt-2 p-2">
+                <li><span class="title-li"><i class="fa-solid fa-location-dot"></i> Địa chỉ: Tầng 8 Ladeco, 266 Đội Cấn, H&agrave; Nội,</span></li>
+                <li><span class="title-li"><i class="fa-solid fa-phone"></i> Hotline:&nbsp;<a class="fone" href="tel:#">1900 6750</a></span></li>
+                <li><span class="title-li"><i class="fa-solid fa-envelope"></i> Email:&nbsp;<a href="mailto:support@skylandsgroup.com">support@skylandsgroup.com</a></span></li>
+            </ul>
+            <div class="ulsocial">
+                <a href="">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+                <a href="">
+                    <i class="fa-brands fa-google-plus-g"></i>
+                </a>
+                <a href="">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+            </div>
+            <br />
+        </div>
+        <div class="col-lg-6">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <div class="contact-h1">GỬI LIÊN HỆ CHO CHÚNG TÔI</div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-contact">
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.fullname, new { htmlAttributes = new { @class = "form-contact-input", placeholder = "Họ và tên" } })
+                                @Html.ValidationMessageFor(model => model.fullname, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-contact-input", placeholder = "Email" } })
+                                @Html.ValidationMessageFor(model => model.fullname, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="contact-input-line">
+                            @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-contact-input-2", placeholder = "Số điện thoại" } })
+                            @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="contact-input-line">
+                            @Html.TextAreaFor(model => model.conMessage, new { @class = "form-contact-input-2", placeholder = "Nội dung" })
+                            @Html.ValidationMessageFor(model => model.conMessage, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <input type="submit" value="Gửi liên hệ" class="btn-contact" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

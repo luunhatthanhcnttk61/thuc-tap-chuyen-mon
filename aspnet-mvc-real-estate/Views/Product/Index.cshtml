@@ -1,0 +1,131 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<aspnet_mvc_real_estate.Models.product>
+@{
+    ViewBag.Title = "Quản lý sản phẩm";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+<p>
+    <a href="@Url.Action("Create", "Product")" class="btn btn-danger"><i class="fa-solid fa-plus"></i></a>
+    <a href="@Url.Action("Export", "Product")" class="btn btn-default"><i class="fa-solid fa-file-export"></i></a>
+    <a data-toggle="collapse" data-target="#search" class="btn btn-primary"><i class="fa-solid fa-search"></i></a>
+    <div id="search" class="collapse">
+        @using (Html.BeginForm("Index", "Product", FormMethod.Get, new { @class = "form-inline" }))
+        {
+            <input type="text" name="searchString" class="form-control mx-sm-3" value="@ViewBag.Keyword" placeholder="Tìm kiếm..." />
+            <button class="btn btn-primary"><i class="fa-solid fa-search"></i></button>
+        }
+    </div>
+</p>
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <tr>
+            <th width="15%">
+                Tên Bất động sản
+            </th>
+            <th width="7%">
+                Diện tích
+            </th>
+            <th width="18%">
+                Địa chỉ
+            </th>
+            <th width="10%">
+                Giá
+            </th>
+            <th width="10%">
+                Loại BĐS
+            </th>
+            <th width="5%">
+                Nổi bật
+            </th>
+            <th width="13%">
+                Thuộc dự án
+            </th>
+            <th width="12%"></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.products_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.area)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.address)
+                </td>
+                <td>
+                    @DataTypeHelpers.FormatCurrency(item.price)
+                </td>
+                <td>
+                    @aspnet_mvc_real_estate.Models.RE_TypeModels.Find(item.type).name
+                </td>
+                <td class="text-center">
+                    @if (item.isHot)
+                    {
+                        <span class="btn btn-success"><i class="fa-solid fa-check"></i></span>
+                    }
+                    else
+                    {
+                        <span class="btn btn-danger"><i class="fa-solid fa-xmark"></i></span>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.collection.collections_name)
+                </td>
+                <td class="text-center">
+                    <a href="@Url.Action("Edit", new { id = item.products_id })" class="btn btn-primary"><i class="fa-solid fa-pen"></i></a>
+                    <a href="@Url.Action("Galery", new { id = item.products_id })" class="btn btn-success h-warning">
+                        <i class="fa-solid fa-photo"></i>
+                        @if (item.products_galery.Count <= 0)
+                        {
+                            <span class="display-warning" data-toggle="tooltip" data-placement="right"
+                                  title="Thư viện đang trống, hãy thêm ít nhất một ảnh!">
+                                <i class="fa-solid fa-info-circle"></i>
+                            </span>
+                        }
+                    </a>
+                    <a style="cursor:pointer" data-toggle="modal" data-target="#cfm-del-@item.products_id" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                    <!-- Modal -->
+                    <div class="modal fade" id="cfm-del-@item.products_id" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Xác nhận xóa</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Bạn có chắc muốn xóa sản phẩm <b>#@item.products_id @item.products_name</b>? </p>
+                                    <p>Lưu ý: thư viện của sản phẩm này cũng sẽ bị xóa cùng với sản phẩm</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="modal-action">
+                                        @using (Html.BeginForm("Delete", "Product", new { id = item.products_id }))
+                                        {
+                                            @Html.AntiForgeryToken()
+
+                                            <div class="form-actions no-color">
+                                                <input type="submit" value="Xác nhận" class="btn btn-danger" />
+                                            </div>
+                                        }
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+@if (Model.PageCount > 1)
+{
+    <div class="text-center">
+        @Html.PagedListPager(Model, page => Url.Action("", new { page }))
+    </div>
+}
+

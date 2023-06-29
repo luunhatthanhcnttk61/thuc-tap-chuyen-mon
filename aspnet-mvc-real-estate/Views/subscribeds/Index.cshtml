@@ -1,0 +1,36 @@
+﻿@model IEnumerable<aspnet_mvc_real_estate.Models.subscribed>
+
+@{
+    ViewBag.Title = "Subscribed";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Subscribed</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.subscribed_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.subscribed_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.subscribed_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.subscribed_id })
+        </td>
+    </tr>
+}
+
+</table>

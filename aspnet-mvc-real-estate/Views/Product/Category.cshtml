@@ -1,0 +1,88 @@
+﻿@model IEnumerable<aspnet_mvc_real_estate.Models.product>
+@{
+    ViewBag.Title = ViewBag.HeadTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bg-contact">
+    <div class="title-page">@ViewBag.Title</div>
+    <div class="breadcrumb">@Html.ActionLink("Trang chủ", "Index", "Home") / @ViewBag.Title</div>
+</div>
+
+<section class="section-sort-project">
+    <div class="container">
+        <div class="filter-product">
+            <span class="title_">Sắp xếp</span>
+            @using (Html.BeginForm("Category", "Product", FormMethod.Post))
+            {
+                <div class="row">
+                    <div class="col-md-10 mobile-pt">
+                        <input type="hidden" name="collection" value="@ViewBag.collection_id" />
+                        @Html.DropDownList("typeSort", (IEnumerable<SelectListItem>)ViewBag.typeSort, htmlAttributes: new { @class = "search-query", placeholder = "Nhập từ khóa" })
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn-search">Xác nhận</button>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</section>
+<hr />
+<div class="container">
+    <div class="row">
+        <!-- Each Item is one class -->
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4" style="margin-top:10px">
+                <div class="box">
+                    <div class="item-project-img hot">
+                        <span class="cnew">Mới đăng</span>
+                        @if (item.products_galery.Count > 0)
+                        {
+                            <img class="item-project-img_thumb" src="~/Images/Product/@item.products_galery.First().img" />
+                        }
+                        else
+                        {
+                            <img class="item-project-img_thumb" src="~/Images/Product/404.jpg" />
+                        }
+                    </div>
+
+                    <div class="item-project-body">
+                        <div class="item-project-name">
+                            @item.products_name
+                        </div>
+                        <div class="item-project-desc">
+                            @Html.Raw(item.information)
+                        </div>
+                        <div class="item-project-address">
+                            <i class="fa-solid fa-location-dot"></i>
+                            Địa chỉ: @item.address
+                        </div>
+                        <div class="item-project-type">
+                            <i class="fa-solid fa-building"></i>
+                            Loại BĐS: @aspnet_mvc_real_estate.Models.RE_TypeModels.Find(item.type).name
+                        </div>
+                        <div class="item-project-area">
+                            <i class="fa-solid fa-building"></i>
+                            Diện tích: @item.area
+                        </div>
+                    </div>
+                    <div class="item-project-action">
+                        <div class="item-project-price">@DataTypeHelpers.FormatCurrency(item.price)</div>
+                        <a href="@Url.Action("ProductItem", "Product", new {slug = item.products_slug, id = item.products_id})" class="btn-detail" tabinex="0">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+        }
+        <!-- End here -->
+    </div>
+</div>
+
+
+<section class="product-slider">
+</section>
+
+<section class="product-main">
+</section>

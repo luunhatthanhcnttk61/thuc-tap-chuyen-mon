@@ -1,0 +1,58 @@
+﻿@model IEnumerable<aspnet_mvc_real_estate.Models.products_galery>
+@{
+    ViewBag.Title = "Thư viện hình ảnh";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<p class="text-center">
+    @Html.ActionLink("Thêm ảnh", "addImages", new { id = ViewBag.id }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Quay lại", "Index", "Collection", new { @class = "btn btn-primary btn-outline" })
+</p>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <a href="~/Images/Product/@item.img" target="_blank">
+                    <img src="~/Images/Product/@item.img" alt="@item.img" style="width:100%">
+                </a>
+                <div class="caption text-center">
+                    <p>
+                        <span class="file-name">@item.img</span>
+                        <a style="cursor:pointer" data-toggle="modal" data-target="#cfm-del-@item.products_galery_id" class="delete-file"><i class="fa-solid fa-minus"></i></a>
+                        <!-- Modal -->
+                        <div class="modal fade" id="cfm-del-@item.products_galery_id" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Xác nhận xóa</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Bạn có chắc muốn xóa ảnh này</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="modal-action">
+                                            @using (Html.BeginForm("DeleteImages", "Product", new { id = item.products_galery_id }))
+                                            {
+                                                @Html.AntiForgeryToken()
+
+                                                <div class="form-actions no-color">
+                                                    <input type="submit" value="Xác nhận" class="btn btn-danger" />
+                                                </div>
+                                            }
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>

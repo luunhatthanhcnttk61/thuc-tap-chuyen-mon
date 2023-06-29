@@ -1,0 +1,61 @@
+﻿@model PagedList.IPagedList<aspnet_mvc_real_estate.Models.news>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Quản lý bài viết";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<div class="admin-collection">
+    @foreach (var item in Model)
+    {
+        <div class="admin-collection-item">
+            <div class="news-item">
+                <div class="admin-thumb">
+                    <img src="~/Content/Images/Post/@item.thumbnail" width="100%" />
+                </div>
+                <div class="admin-news-info">
+                    <div class="news--name">#@item.news_id @item.news_name </div>
+                    <div class="news--content">@Html.Raw(item.content)</div>
+                    <div class="collection--action">
+                        <a href="@Url.Action("Edit", new { id = item.news_id })"><i class="fa-solid fa-pen-to-square"></i> Sửa</a>
+                        <a href="@Url.Action("Details", new { id = item.news_id })"><i class="fa-solid fa-pager"></i> Chi tiết</a>
+                        <a style="cursor:pointer" data-toggle="modal" data-target="#cfm-del-@item.news_id"><i class="fa-solid fa-close"></i> Xóa</a>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="cfm-del-@item.news_id" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Xác nhận xóa</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Bạn có chắc muốn xóa bài viết <b>#@item.news_id</b>? </p>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="modal-action">
+                                    @using (Html.BeginForm("Delete", "New", new { id = item.news_id }))
+                                    {
+                                        @Html.AntiForgeryToken()
+
+                                        <div class="form-actions no-color">
+                                            <input type="submit" value="Xác nhận" class="btn btn-danger" /> 
+                                        </div>
+                                    }
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@if (Model.PageCount > 1)
+{
+    <div class="page-number">@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))</div>
+}

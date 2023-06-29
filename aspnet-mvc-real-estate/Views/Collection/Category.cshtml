@@ -1,0 +1,118 @@
+﻿@model PagedList.IPagedList<aspnet_mvc_real_estate.Models.collection>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Danh mục dự án";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="collection-slider">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="https://cdn.discordapp.com/attachments/1100753623849377835/1105766805353529434/co-phan-ta.jpg" alt="Slide 1">
+            </div>
+            <div class="item">
+                <img src="https://cdn.discordapp.com/attachments/1100753623849377835/1105766805642944512/du-an-vinhomes-grand-park.jpeg" alt="Slide 2">
+            </div>
+            <div class="item">
+                <img src="https://cdn.discordapp.com/attachments/1100753623849377835/1105766806712492062/can-ho-picity-high-park-quan-12.jpg" alt="Slide 3">
+            </div>
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div>
+    </div>
+</section>
+<section class="collection-main">
+    <div class="container mx-5">
+        <div class="section-content relative">
+            <div class="row">
+                <div class="col small-12 large-12">
+                    <div class="col-inner">
+                        <h2 style="text-align: center;"><span style="font-size: 120%;">DỰ ÁN BẤT ĐỘNG SẢN SKYLAND</span></h2>
+                        <div>
+                            <img decoding="async" class="size-full wp-image-5771 aligncenter" alt="" width="310" height="13" srcset="https://skylandvietnam.vn/wp-content/uploads/2019/05/b1.png 310w, https://skylandvietnam.vn/wp-content/uploads/2019/05/b1-280x13.png 280w" sizes="(max-width: 310px) 100vw, 310px">
+                        </div>
+                        <div class="desdoitac" style="font-size: 15px; text-align: center;">
+                            SKYLAND nỗ lực không ngừng trong việc tạo ra những sản phẩm chất lượng tốt. Quy hoạch tại các vị trí chiến lược, kiến tạo cộng đồng nhân văn tiên tiến với môi trường sống tiện nghi, hiện đại cho cư dân, góp phần vào sự
+                            phát triển bền vững của toàn xã hội.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-duan-title"><h3>DỰ ÁN <strong>ĐANG TRIỂN KHAI</strong></h3></div>
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-sm-4">
+                        <div class="thumbnail">
+                            <div class="duan-item-home-item large-4 col small-12 ">
+                                <div class="duan-item-home-list-inner">
+                                    <div class="thumb-duan-list-home">
+                                        <a href="@Url.Action("CollectionItem", "Collection", new {slug = item.collections_slug, id = item.collections_id})">
+                                            @if (item.collections_galery.Count() > 0)
+                                            {
+                                                <img width="653" height="400" src="~/Images/Collections/@item.collections_galery.First().img" class="attachment-medium size-medium wp-post-image" alt="@item.collections_slug" decoding="async" loading="lazy">
+                                            }
+                                            else
+                                            {
+                                                <img width="653" height="400" src="~/Images/Collections/404.jpg" class="attachment-medium size-medium wp-post-image" alt="@item.collections_slug" decoding="async" loading="lazy">
+                                            }
+
+                                            <h5>@item.collections_name</h5>
+                                        </a>
+                                    </div>
+                                    <label for="hot">Nổi bật</label>
+                                    <div class="info_product">
+                                        <div class="clearfix"></div>
+                                        <p class="excerpt duan-item-thongtin">@Html.Raw(item.overview)</p>
+                                        <div class="property-info">
+                                            <div class="duan-item-home-left">Mã dự án: #@item.collections_id</div>
+                                            <a class="readmore duan-item-action" href="@Url.Action("CollectionItem", "Collection", new {slug = item.collections_slug, id = item.collections_id})">
+                                                <div class="duan-item-home-right">
+                                                    <span>Chi tiết</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!-- Pagination -->
+            @if (Model.PageCount > 1)
+            {
+                <div class="text-center">
+                    @Html.PagedListPager(Model, page => Url.Action("Category", new { page }))
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<div class="section-content relative">
+    <div class="container mx-5">
+        <div class="row" id="row-1694328924">
+            <div class="col small-12 large-12">
+                <div class="col-inner">
+                    <h2 style="text-align: center;"><span style="font-size: 120%;">ĐỐI TÁC CỦA CHÚNG TÔI</span></h2><p><img decoding="async" loading="lazy" class="size-full wp-image-5771 aligncenter" src="https://webmau.hanghieuyoga.com/wp-content/uploads/2019/05/b1.png" alt="" width="310" height="13" srcset="https://skylandvietnam.vn/wp-content/uploads/2019/05/b1.png 310w, https://skylandvietnam.vn/wp-content/uploads/2019/05/b1-280x13.png 280w" sizes="(max-width: 310px) 100vw, 310px"></p><div class="desdoitac" style="font-size: 15px; text-align: center;">Là thương hiệu hàng đầu trên thị trường bất động sản Việt Nam, Tập đoàn SKYLAND luôn được các đối tác đánh giá cao về năng lực và uy tín kinh doanh. Tập đoàn SKYLAND đã trở thành đối tác tin cậy của hàng loạt công ty, tập đoàn hàng đầu trong rất nhiều lĩnh vực.</div><div>&nbsp;</div><div class="img has-hover " id="image_1621338487">
+                        <div class="img-inner dark">
+                            <img width="1020" height="366" src="https://skylandvietnam.vn/wp-content/uploads/2019/05/Screen-Shot-2019-05-13-at-7.21.25-PM-1400x502.png" class="attachment-large size-large" alt="" decoding="async" loading="lazy" srcset="https://skylandvietnam.vn/wp-content/uploads/2019/05/Screen-Shot-2019-05-13-at-7.21.25-PM-1400x502.png 1400w, https://skylandvietnam.vn/wp-content/uploads/2019/05/Screen-Shot-2019-05-13-at-7.21.25-PM-800x287.png 800w, https://skylandvietnam.vn/wp-content/uploads/2019/05/Screen-Shot-2019-05-13-at-7.21.25-PM-768x275.png 768w, https://skylandvietnam.vn/wp-content/uploads/2019/05/Screen-Shot-2019-05-13-at-7.21.25-PM.png 1506w" sizes="(max-width: 1020px) 100vw, 1020px">
+                        </div>
+                        <style scope="scope"></style>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

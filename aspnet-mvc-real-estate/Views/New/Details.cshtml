@@ -1,0 +1,58 @@
+﻿@model aspnet_mvc_real_estate.Models.news
+
+@{
+    ViewBag.Title = "Thông tin bài viết";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+<p class="text-center">
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.news_id }) |
+    @Html.ActionLink("Quay lại", "Index")
+</p>
+<div>
+    <dl class="dl-horizontal">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                @Html.DisplayNameFor(model => model.news_name)
+            </div>
+            <div class="panel-body">
+                @Model.news_name
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                @Html.DisplayNameFor(model => model.thumbnail)
+            </div>
+            <div class="panel-body">
+                <img src="~/Content/Images/Post/@Model.thumbnail" width="80%" />
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                @Html.DisplayNameFor(model => model.content)
+            </div>
+            <div class="panel-body">
+                @Html.Raw(Model.content)
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                @Html.DisplayNameFor(model => model.postdate)
+            </div>
+            <div class="panel-body">
+                @Html.DisplayFor(model => model.postdate)
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                @Html.DisplayNameFor(model => model.viewCount)
+            </div>
+            <div class="panel-body">
+                @Html.DisplayFor(model => model.viewCount)
+            </div>
+        </div>
+
+    </dl>
