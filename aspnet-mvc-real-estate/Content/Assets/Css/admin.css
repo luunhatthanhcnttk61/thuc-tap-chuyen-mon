@@ -523,11 +523,92 @@ input[type=checkbox], input[type=radio] {
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
 }
+.card_contact {
+    position: relative;
+    border: 1px solid #337ab7;
+    padding: 10px;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+    .card_contact:hover {
+        background-color: #f8f8f8;
+    }
+
+.card-contact {
+    color: #000;
+}
+
+.card-contact-new {
+    position: absolute;
+    right: -3px;
+    color: #fff;
+    background-color: #dc3545;
+    padding: 0 10px;
+}
+
+.card-contact:hover {
+    color: #000;
+    text-decoration: none;
+}
+
+.card-contact-title {
+    color: #434a6e;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.card-contact-content {
+    font-size: 14px;
+    color: #333;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.new {
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+}
+
+.table-management div {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.pt {
+    padding-top: 10px;
+}
+
+.pb {
+    padding-bottom: 10px;
+}
+
+.inline-detail {
+    padding: 10px;
+    background-color: #f5f5f5;
+}
+
+.contact-detail-title {
+    font-weight: bold;
+}
+
+.contact-detail-content {
+}
+
+.inline-detail:nth-child(even) {
+    background-color: #fff;
+}
 
 @media screen and (max-width: 768px) {
     .news-item {
         display: block;
     }
+
     .admin-thumb {
         width: 100%;
     }
@@ -535,16 +616,19 @@ input[type=checkbox], input[type=radio] {
     .admin-news-info {
         width: 100%;
     }
+
     .news--name {
         font-size: 16px;
         font-weight: 600;
         margin-left: 0;
     }
+
     .news--content {
         margin-left: 0;
         font-size: 14px;
         -webkit-line-clamp: 1;
     }
+
     .popup-confirm {
         width: 70%;
     }

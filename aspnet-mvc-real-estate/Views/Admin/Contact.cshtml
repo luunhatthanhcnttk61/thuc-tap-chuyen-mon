@@ -1,8 +1,40 @@
-﻿
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<aspnet_mvc_real_estate.Models.contact>
+
 @{
-    ViewBag.Title = "Contact";
+    ViewBag.Title = "Liên hệ - Hỗ trợ";
     Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
+<div class="container">
+    <div class="row card-contact_list">
+        @foreach (var item in Model)
+        {
+            if (item.isSeen == 0)
+            {
+                <div class="col-md-4 card_contact">
+                    <a class="card-contact" href="@Url.Action("ContactDetails", new {Id = item.contact_id})">
+                        <span class="card-contact-new">NEW</span>
+                        <div class="card-contact-title">@item.fullname</div>
+                        <div class="card-contact-content">@item.conMessage</div>
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-4 card_contact">
+                    <a class="card-contact" href="@Url.Action("ContactDetails", new {Id = item.contact_id})">
+                        <div class="card-contact-title">@item.fullname</div>
+                        <div class="card-contact-content">@item.conMessage</div>
+                    </a>
+                </div>
+            }
+        }
 
-<h2>Contact</h2>
-
+    </div>
+    @if (Model.PageCount > 1)
+    {
+        <div class="text-center">
+            @Html.PagedListPager(Model, page => Url.Action("Contact", new { page }))
+        </div>
+    }
+</div>
